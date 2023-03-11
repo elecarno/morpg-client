@@ -171,6 +171,7 @@ func fetch_itemdata():
 	
 remote func return_itemdata(data):
 	if get_tree().get_rpc_sender_id() == 1:
-		print("recieved data " + str(data))
+		print("recieved itemdata")
+		#print("recieved data " + str(data))
 		get_node("/root/scene_handler/map/gui/player_stats").itemdata = data
 		get_node("/root/scene_handler/map/gui/player_stats/inv").init()

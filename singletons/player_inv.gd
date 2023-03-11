@@ -34,7 +34,7 @@ func add_item(item_name, item_quantity):
 func remove_item(slot: slot_class):
 	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
 	var inventory = playerstats.playerdata.inv
-	inventory.erase(slot.slot_index)
+	inventory.erase(str(slot.slot_index))
 
 func update_slot_visual(slot_index, item_name, new_quantity):
 	var slot = get_tree().root.get_node("/root/scene_handler/gui/player_stats/inv/inventory/slot_" + str(slot_index + 1))
@@ -42,13 +42,17 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 		slot.item.set_item(item_name, new_quantity)
 	else:
 		slot.initialise_item(item_name, new_quantity)
+	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
+	playerstats.update_server_data()
 
 func add_item_to_empty_slot(item: item_class, slot: slot_class):
 	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
 	var inventory = playerstats.playerdata.inv
-	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
+	inventory[str(slot.slot_index)] = [item.item_name, item.item_quantity]
+	playerstats.update_server_data()
 
 func add_item_quantity(slot: slot_class, quantity_to_add: int):
 	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
 	var inventory = playerstats.playerdata.inv
-	inventory[slot.slot_index][1] += quantity_to_add
+	inventory[str(slot.slot_index)][1] += quantity_to_add
+	playerstats.update_server_data()

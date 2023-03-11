@@ -36,6 +36,7 @@ func load_playerdata(data):
 	playerdata = data
 	if initial_load == false:
 		server.fetch_itemdata()
+		#playerdata.inv = {} # solves a dumb bug where the default item data is added on every time you load back in
 		get_parent().get_parent().get_node("player").position.x = playerdata.pos.x
 		get_parent().get_parent().get_node("player").position.y = playerdata.pos.y
 		initial_load = true
@@ -70,6 +71,10 @@ func update_display():
 	get_node("inv/player_name").text = get_parent().get_parent().get_node("player").username
 	
 	storeposition()
+
+func update_server_data():
+	server.write_playerdata_update(playerdata)
+	server.fetch_playerdata()
 
 func gain_xp(amount):
 	playerdata.stats.xp += amount

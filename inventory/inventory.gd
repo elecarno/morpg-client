@@ -52,7 +52,7 @@ func left_click_different_item(event: InputEvent, slot: slot_class):
 	find_parent("player_stats").holding_item = temp_item
 
 func left_click_same_item(slot: slot_class):
-	var stack_size = int(playerstats.item_data[slot.item.item_name]["stacksize"])
+	var stack_size = int(playerstats.itemdata[slot.item.item_name]["stacksize"])
 	var able_to_add = stack_size - slot.item.item_quantity
 	if able_to_add >= find_parent("player_stats").holding_item.item_quantity:
 		player_inv.add_item_quantity(slot, find_parent("player_stats").holding_item.item_quantity)
