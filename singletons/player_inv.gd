@@ -8,6 +8,10 @@ const item_class = preload("res://inventory/item.gd")
 const NUM_INV_SLOTS = 30
 const NUM_HOTBAR_SLOTS = 10
 
+var playerstats
+var inventory
+var equips
+
 func add_item(item_name, item_quantity):
 	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
 	var inventory = playerstats.playerdata.inv
@@ -31,10 +35,18 @@ func add_item(item_name, item_quantity):
 			update_slot_visual(i, inventory[i][0], inventory[i][1])
 			return
 
+func get_vars():
+	playerstats = get_node("/root/scene_handler/map/gui/player_stats")
+	inventory = playerstats.playerdata.inv
+	equips = playerstats.playerdata.equips
+
 func remove_item(slot: slot_class):
-	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
-	var inventory = playerstats.playerdata.inv
-	inventory.erase(str(slot.slot_index))
+	get_vars()
+	if slot.slot_type == "inv":
+		inventory.erase(str(slot.slot_index))
+	else:
+		equips.erase(str(slot.slot_index))
+	playerstats.update_server_data()
 
 func update_slot_visual(slot_index, item_name, new_quantity):
 	var slot = get_tree().root.get_node("/root/scene_handler/gui/player_stats/inv/inventory/slot_" + str(slot_index + 1))
@@ -42,17 +54,21 @@ func update_slot_visual(slot_index, item_name, new_quantity):
 		slot.item.set_item(item_name, new_quantity)
 	else:
 		slot.initialise_item(item_name, new_quantity)
-	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
+	get_vars()
 	playerstats.update_server_data()
 
 func add_item_to_empty_slot(item: item_class, slot: slot_class):
-	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
-	var inventory = playerstats.playerdata.inv
-	inventory[str(slot.slot_index)] = [item.item_name, item.item_quantity]
+	get_vars()
+	if slot.slot_type == "inv":
+		inventory[str(slot.slot_index)] = [item.item_name, item.item_quantity]
+	else:
+		equips[str(slot.slot_index)] = [item.item_name, item.item_quantity]
 	playerstats.update_server_data()
 
 func add_item_quantity(slot: slot_class, quantity_to_add: int):
-	var playerstats = get_node("/root/scene_handler/map/gui/player_stats")
-	var inventory = playerstats.playerdata.inv
-	inventory[str(slot.slot_index)][1] += quantity_to_add
+	get_vars()
+	if slot.slot_type == "inv":
+		inventory[str(slot.slot_index)][1] += quantity_to_add
+	else: 
+		equips[str(slot.slot_index)][1] += quantity_to_add
 	playerstats.update_server_data()

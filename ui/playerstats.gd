@@ -26,10 +26,12 @@ func _physics_process(_delta):
 		if !inv_open:
 			inv_open = true
 			ui_anim.play("open_inv")
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			update_display()
 		else:
 			inv_open = false
 			ui_anim.play("close_inv")
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			update_display()
 			
 func load_playerdata(data):

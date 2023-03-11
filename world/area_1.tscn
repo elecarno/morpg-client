@@ -2871,6 +2871,47 @@ text = "Jellycarno"
 align = 1
 valign = 1
 
+[node name="equip_slots" type="Control" parent="gui/player_stats/inv"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+
+[node name="weapon_slot" type="TextureRect" parent="gui/player_stats/inv/equip_slots"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 879.0
+margin_top = 495.0
+margin_right = 1041.0
+margin_bottom = 546.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 22 )
+expand = true
+script = ExtResource( 24 )
+slot_type = "weapon"
+
+[node name="armour_slot" type="TextureRect" parent="gui/player_stats/inv/equip_slots"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1083.0
+margin_top = 465.0
+margin_right = 1161.0
+margin_bottom = 543.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 22 )
+expand = true
+script = ExtResource( 24 )
+slot_type = "armour"
+
+[node name="hat_slot" type="TextureRect" parent="gui/player_stats/inv/equip_slots"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 1194.0
+margin_top = 465.0
+margin_right = 1272.0
+margin_bottom = 543.0
+rect_min_size = Vector2( 48, 48 )
+texture = ExtResource( 22 )
+expand = true
+script = ExtResource( 24 )
+slot_type = "hat"
+
 [node name="inventory" type="GridContainer" parent="gui/player_stats/inv"]
 margin_left = 494.0
 margin_top = 606.0

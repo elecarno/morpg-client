@@ -8,6 +8,7 @@ var dir = 0
 func enter(_msg := {}) -> void:
 	player.collision_mask = 3 
 	previous_state = _msg["prev"]
+	
 	anim.play("slash")
 	dir = player.get_input_direction()
 	player.dash.start_dash(player.dash_length/4, false)

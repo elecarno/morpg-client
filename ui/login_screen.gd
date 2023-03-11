@@ -36,6 +36,7 @@ func _on_login_button_pressed():
 		var player = get_parent().get_parent().get_node("player")
 		player.username = username_input.get_text()
 		get_parent().get_node("player_stats").set_physics_process(true)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 #		player.name_label.text = player.username
 
 func _on_create_acc_button_pressed():

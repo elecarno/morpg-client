@@ -133,7 +133,7 @@ func attack(prv_anim):
 
 func can_attack() -> bool:
 	if playerstats.playerdata != null:
-		if playerstats.playerdata.stats.energy > 5:
+		if playerstats.playerdata.stats.energy > 5 and get_node("sprite/hitbox").damage > 0:
 			return true
 		else:
 			return false
@@ -167,7 +167,16 @@ func calc_stats():
 	
 	block_energy_drain = base_block_energy_drain + (-1 * log(playerstats.playerdata.stats.def))
 	
-	get_node("sprite/hitbox").damage = (equipped_weapon_damage + (1.5 * playerstats.playerdata.stats.atk))
+	var weapon_slot = playerstats.get_node("inv/equip_slots/weapon_slot")
+	var weapon_item
+	if weapon_slot.get_child_count() > 0:
+		weapon_item = weapon_slot.get_child(0).item_name
+	if weapon_item != null:
+		var weapon_damage = playerstats.itemdata[weapon_item]["damage"]
+		equipped_weapon_damage = weapon_damage
+		get_node("sprite/hitbox").damage = (equipped_weapon_damage + (1.5 * playerstats.playerdata.stats.atk))
+	else:
+		get_node("sprite/hitbox").damage = 0
 
 func _physics_process(_delta):
 	if playerstats.playerdata != null:

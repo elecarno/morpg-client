@@ -24,10 +24,11 @@ onready var quantity_label = get_node("quantity")
 #	else:
 #		quantity_label.text = str(item_quantity)
 		
-func set_item(name, quantity):
+func set_item(name, quantity, pos, size):
 	var playerstats = find_parent("player_stats")
 	
-	set_position(Vector2(0, 0))
+	set_position(pos)
+	scale = size
 	#set_position(Vector2(24, 24))
 	item_name = name
 	item_quantity = quantity
