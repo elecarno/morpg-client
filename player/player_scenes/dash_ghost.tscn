@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/player_sprites/test_player_2.png" type="Texture" id=1]
+[ext_resource path="res://player/player_scripts/dash_ghost.gd" type="Script" id=2]
+
+[node name="dash_ghost" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 9
+script = ExtResource( 2 )
+
+[node name="tween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="tween" to="." method="_on_tween_tween_completed"]

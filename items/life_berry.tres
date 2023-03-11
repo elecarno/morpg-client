@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://items/classes/food_item.gd" type="Script" id=1]
+[ext_resource path="res://items/item_textures/life_berry.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+ITEM_NAME = "Life Berry"
+ITEM_TEXTURE = ExtResource( 2 )
+QUANTITY = 1
+HOVER_TEXT = "Restores 20 HP"
+HEALTH_RESTORED = 20

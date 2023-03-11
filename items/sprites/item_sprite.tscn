@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://items/sprites/item_sprite.gd" type="Script" id=1]
+[ext_resource path="res://items/life_berry.tres" type="Resource" id=2]
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=3]
+[ext_resource path="res://items/item_textures/life_berry.png" type="Texture" id=4]
+
+[node name="item_sprite" type="TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1912.0
+margin_bottom = -1072.0
+rect_min_size = Vector2( 12, 12 )
+rect_scale = Vector2( 2.995, 2.995 )
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+item = ExtResource( 2 )
+
+[node name="quantity" type="Label" parent="."]
+margin_left = 2.33723
+margin_top = 6.6778
+margin_right = 66.3372
+margin_bottom = 42.6778
+rect_scale = Vector2( 0.16009, 0.16009 )
+theme = ExtResource( 3 )
+text = "1"
+align = 2

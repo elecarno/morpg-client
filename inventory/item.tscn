@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://inventory/item_sprites/life_berry.png" type="Texture" id=2]
+[ext_resource path="res://inventory/item.gd" type="Script" id=3]
+[ext_resource path="res://ui/dialog_box.png" type="Texture" id=4]
+
+[node name="item" type="Node2D"]
+scale = Vector2( 2.4, 2.4 )
+z_index = 25
+script = ExtResource( 3 )
+
+[node name="tex" type="TextureRect" parent="."]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 8, 8 )
+mouse_filter = 0
+texture = ExtResource( 2 )
+
+[node name="quantity" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 58.0
+margin_bottom = 46.0
+rect_scale = Vector2( 0.199774, 0.199774 )
+mouse_filter = 1
+theme = ExtResource( 1 )
+text = "999"
+align = 1
+valign = 2
+
+[node name="tooltip" type="Control" parent="."]
+visible = false
+margin_left = -35.0
+margin_top = -53.0
+margin_right = 29.0
+margin_bottom = -21.0
+rect_scale = Vector2( 1.5, 1.5 )
+mouse_filter = 1
+
+[node name="bg" type="TextureRect" parent="tooltip"]
+margin_right = 64.0
+margin_bottom = 32.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+
+[node name="name" type="Label" parent="tooltip"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 420.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.134699, 0.134699 )
+mouse_filter = 1
+theme = ExtResource( 1 )
+text = "item_name"
+
+[node name="desc" type="Label" parent="tooltip"]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = 557.0
+margin_bottom = 166.0
+rect_scale = Vector2( 0.101279, 0.101279 )
+mouse_filter = 1
+theme = ExtResource( 1 )
+text = "item_description"
+
+[connection signal="mouse_entered" from="tex" to="." method="_on_tex_mouse_entered"]
+[connection signal="mouse_exited" from="tex" to="." method="_on_tex_mouse_exited"]
