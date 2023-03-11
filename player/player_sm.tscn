@@ -12,7 +12,7 @@
 [ext_resource path="res://player/player_scripts/attack.gd" type="Script" id=10]
 [ext_resource path="res://player/player_scripts/hitbox.gd" type="Script" id=11]
 [ext_resource path="res://enemies/hurtbox.gd" type="Script" id=12]
-[ext_resource path="res://player/player_sprites/player_armoured.png" type="Texture" id=13]
+[ext_resource path="res://player/player_armour/purple_tunic.png" type="Texture" id=13]
 [ext_resource path="res://ui/wendy.ttf" type="DynamicFontData" id=14]
 [ext_resource path="res://player/block.gd" type="Script" id=15]
 [ext_resource path="res://effects/spark_particle.png" type="Texture" id=16]
@@ -103,6 +103,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("sprite/armour:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 24 ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "block"
@@ -175,6 +187,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/armour:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 56, 57, 58, 59, 60 ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "double_jump"
@@ -186,6 +210,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43, 44, 45, 46 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
@@ -207,6 +243,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 36, 37, 38 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle"
@@ -218,6 +266,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -239,6 +299,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 32, 33, 34 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34 ]
+}
 
 [sub_resource type="Animation" id=17]
 resource_name = "land"
@@ -255,11 +327,24 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 48, 49, 50 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 48, 49, 50 ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "run"
 length = 0.8
 loop = true
+step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
@@ -267,6 +352,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
@@ -301,6 +398,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprite/armour:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 64, 65, 66, 67, 68 ]
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "slide"
@@ -328,6 +437,18 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite/armour:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
@@ -416,9 +537,16 @@ vframes = 9
 
 [node name="sprite" type="Sprite" parent="."]
 z_index = 1
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 10
+
+[node name="armour" type="Sprite" parent="sprite"]
+z_index = 5
 texture = ExtResource( 13 )
 hframes = 8
 vframes = 10
+frame = 24
 
 [node name="hit_particles" type="Particles2D" parent="sprite"]
 position = Vector2( 8, -1 )

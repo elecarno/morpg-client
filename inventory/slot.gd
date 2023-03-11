@@ -7,11 +7,11 @@ var slot_index
 export var slot_type = "inv"
 
 onready var inventory_node = find_parent("inventory")
-onready var ui = find_parent("player_stats")
+onready var playerstats = find_parent("player_stats")
 
 func pick_from_slot():
 	remove_child(item)
-	ui.add_child(item)
+	playerstats.add_child(item)
 	item.scale = Vector2(4, 4)
 	item.get_node("tex").mouse_filter = MOUSE_FILTER_IGNORE
 	item.get_node("tooltip").visible = false
@@ -29,6 +29,10 @@ func remove_from_slot():
 func put_into_slot(new_item):
 	item = new_item
 	#item.position = Vector2(24, 24)
+	
+	if slot_type == "armour":
+		find_parent("map").get_node("player").get_node("sprite/armour").texture = load("res://player/player_armour/" + item.item_name + ".png")
+	
 	item.scale = Vector2(2.4, 2.4)
 	if slot_type == "weapon":
 		item.position = Vector2(54, 0)
@@ -38,7 +42,7 @@ func put_into_slot(new_item):
 	else:
 		item.position = Vector2(0, 0)
 	item.get_node("tex").mouse_filter = MOUSE_FILTER_STOP
-	ui.remove_child(item)
+	playerstats.remove_child(item)
 	add_child(item)
 	
 func use_item():
@@ -55,6 +59,7 @@ func initialise_item(item_name, item_quantity):
 	elif slot_type == "armour" or slot_type == "hat":
 		pos = Vector2(0, 0)
 		size = Vector2(4, 4)
+		find_parent("map").get_node("player").get_node("sprite/armour").texture = load("res://player/player_armour/" + item_name + ".png")
 	else:
 		pos = Vector2(0, 0)
 		size = Vector2(2.4, 2.4)
