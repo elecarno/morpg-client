@@ -40,6 +40,8 @@ export var dash_speed := 550.0
 export var dash_accel := 100
 export var dash_length = 0.15
 
+export var attack_speed := 250
+
 export var jump_height : float = 50 # 80 works well
 export var jump_time_to_peak : float = 0.4 # 0.4 works well
 export var jump_time_to_descend : float = 0.35 # 0.35 works well
@@ -174,6 +176,7 @@ func calc_stats():
 	if weapon_item != null:
 		var weapon_damage = playerstats.itemdata[weapon_item]["damage"]
 		equipped_weapon_damage = weapon_damage
+		attack_speed = playerstats.itemdata[weapon_item]["speed"]
 		get_node("sprite/hitbox").damage = (equipped_weapon_damage + (1.5 * playerstats.playerdata.stats.atk))
 	else:
 		get_node("sprite/hitbox").damage = 0
@@ -220,12 +223,16 @@ func movement_loop():
 			against_wall = true
 
 func define_player_state():
+	if playerstats.playerdata == null:
+		return
 	# if we have differnt maps, a map_node must be included
 	player_state = {
 		"t": OS.get_system_time_msecs(),
 		"p": get_global_position(),
 		"username": username,
+		"lvl": playerstats.playerdata.lvl,
 		"sprite_s": sprite.scale,
-		"anim": anim.current_animation
+		"anim": anim.current_animation,
+		"equips": playerstats.playerdata.equips
 	}
 	server.send_player_state(player_state)

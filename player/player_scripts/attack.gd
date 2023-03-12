@@ -11,7 +11,7 @@ func enter(_msg := {}) -> void:
 	
 	anim.play("slash")
 	dir = player.get_input_direction()
-	player.dash.start_dash(player.dash_length/4, false)
+	player.dash.start_dash(0.15, false)
 	player.attack_timer.wait_time = anim.current_animation_length
 	player.attack_timer.start()
 	player.playerstats.playerattack(10)
@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 #	player.velocity.x = lerp(player.velocity.x, 0, 0.1)
 	player.velocity.y = 0
 	if player.dash.is_dashing():
-		player.velocity.x = lerp(player.velocity.x, player.get_input_direction() * player.dash_speed, player.dash_accel * delta)
+		player.velocity.x = lerp(player.velocity.x, player.get_input_direction() * player.attack_speed, player.dash_accel * delta)
 	else:
 		player.velocity.x = lerp(player.velocity.x, 0, 0.05)
 	player.velocity = player.move_and_slide(player.velocity, player.UP_DIR, true)

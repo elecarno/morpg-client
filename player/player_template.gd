@@ -21,11 +21,12 @@ func _physics_process(_delta):
 		attack()
 
 func update_player(new_position, player_state):
-	name_label.text = player_state["username"]
+	name_label.text = player_state["username"] + ": " + str(player_state["lvl"])
 	anim.play(player_state["anim"])
 	if anim.current_animation == "dash":
 		dash.start_dash_effect(dash_length)
 	sprite.scale = player_state["sprite_s"]
+	get_node("sprite/armour").texture = load("res://player/player_armour/" + str(player_state["equips"]["1"][0]) + ".png")
 	set_position(new_position)
 
 func attack():

@@ -35,7 +35,15 @@ func set_item(name, quantity, pos, size):
 	texture_rect.texture = load("res://inventory/item_sprites/" + item_name + ".png")
 	
 	get_node("tooltip/name").text = item_name.replace("_", " ")
-	get_node("tooltip/desc").text = playerstats.itemdata[item_name]["description"]
+	
+	var type = playerstats.itemdata[item_name]["type"]
+	var desc = ""
+	if type == "weapon":
+		desc = playerstats.itemdata[item_name]["description"] + "\n" + str(playerstats.itemdata[item_name]["damage"]) + " DMG\n" + str(playerstats.itemdata[item_name]["speed"]) + " SPD"
+	else:
+		desc = playerstats.itemdata[item_name]["description"]
+		
+	get_node("tooltip/desc").text = desc
 
 	var stack_size = int(playerstats.itemdata[item_name]["stacksize"])
 	if stack_size == 1:
